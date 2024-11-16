@@ -11,6 +11,6 @@ public class ControlaJogador : MonoBehaviour
 
         Vector3 direcao = new Vector3(eixoX, 0, eixoZ);
 
-        transform.Translate(direcao * velocidade);
+        transform.Translate(direcao * velocidade* Time.deltaTime);
     }
 }
