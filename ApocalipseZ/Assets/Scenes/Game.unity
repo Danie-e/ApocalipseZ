@@ -322,6 +322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 10
+  mascaraChao:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!95 &246178118
 Animator:
   serializedVersion: 5
@@ -1305,6 +1308,10 @@ PrefabInstance:
     - target: {fileID: 6744520145570752319, guid: 29824115d32cc194e9891c33bd649263, type: 3}
       propertyPath: m_Name
       value: Hotel_Estacionamento_Destruido
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744520145570752319, guid: 29824115d32cc194e9891c33bd649263, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -3,6 +3,7 @@ using UnityEngine;
 public class ControlaJogador : MonoBehaviour
 {
     [SerializeField] private float velocidade = 1;
+    [SerializeField] private LayerMask mascaraChao;
     private Animator anim;
     private Rigidbody rigidbody;
     float eixoX;
@@ -10,14 +11,14 @@ public class ControlaJogador : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
-
-        float eixoX = Input.GetAxis("Horizontal");
-        float eixoZ = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
     {
+        rigidbody = GetComponent<Rigidbody>();
+
+        eixoX = Input.GetAxis("Horizontal");
+        eixoZ = Input.GetAxis("Vertical");
 
         Vector3 direcao = new Vector3(eixoX, 0, eixoZ);
 
@@ -33,11 +34,15 @@ public class ControlaJogador : MonoBehaviour
 
         RaycastHit impacto;
 
-        if (Physics.Raycast(raio, out impacto, 100))
+        if (Physics.Raycast(raio, out impacto, 100, mascaraChao))
         {
             Vector3 posicaoMiraJogador = impacto.point - transform.position;
 
             posicaoMiraJogador.y = transform.position.y;
+
+            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
+
+            rigidbody.MoveRotation(novaRotacao);
         }
     }
 }
