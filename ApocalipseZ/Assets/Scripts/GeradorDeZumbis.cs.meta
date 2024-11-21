@@ -3,7 +3,8 @@ guid: d27bb836d7ab450439f8373e4e89ef8e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - zumbi: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

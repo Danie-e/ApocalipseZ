@@ -5,7 +5,7 @@ public class Bala : MonoBehaviour
     private Rigidbody rigidbody;
     [SerializeField] private float Velocidade = 20;
 
-    private void Awake()
+    private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
     }

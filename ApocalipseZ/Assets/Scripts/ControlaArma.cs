@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ControlaArma : MonoBehaviour
 {
-    [SerializeField] private GameObject Bala;
-    [SerializeField] private GameObject CanoArma;
+    [SerializeField] private GameObject bala;
+    [SerializeField] private GameObject canoArma;
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(Bala, CanoArma.transform.position, CanoArma.transform.rotation);
+            Instantiate(bala, canoArma.transform.position, canoArma.transform.rotation);
         }
     }
 }

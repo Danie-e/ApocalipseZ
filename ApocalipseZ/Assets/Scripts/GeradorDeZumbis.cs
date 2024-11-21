@@ -2,13 +2,9 @@ using UnityEngine;
 
 public class GeradorDeZumbis : MonoBehaviour
 {
-    [SerializeField] private GameObject Zumbi;
+    [SerializeField] private GameObject zumbi;
     [SerializeField] private float tempoGerarZumbi;
     private float contadorTempo = 0;
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -16,8 +12,8 @@ public class GeradorDeZumbis : MonoBehaviour
 
         if (contadorTempo >= tempoGerarZumbi)
         {
-            Instantiate(Zumbi, transform.position, transform.rotation);
-            contadorTempo--;
+            Instantiate(zumbi, transform.position, transform.rotation);
+            contadorTempo -= tempoGerarZumbi;
         }
     }
 }

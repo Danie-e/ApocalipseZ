@@ -5,35 +5,33 @@ public class ControlaJogador : MonoBehaviour
 {
     [SerializeField] private float velocidade = 1;
     [SerializeField] private LayerMask mascaraChao;
-    [SerializeField] public GameObject textoGameOver;
+    [SerializeField] public GameObject TextoGameOver;
+
     private Animator anim;
     private Rigidbody rigidbody;
-    float eixoX;
-    float eixoZ;
+
     public bool Vivo = true;
+    private float eixoX;
+    private float eixoZ;
 
     private void Start()
     {
         Time.timeScale = 1;
-    }
-    private void Awake()
-    {
+        rigidbody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
     }
+
     private void Update()
     {
         if (!Vivo)
         {
             if (Input.GetButtonDown("Fire1"))
-            {
                 SceneManager.LoadScene("Game");
-            }
         }
     }
+
     private void FixedUpdate()
     {
-        rigidbody = GetComponent<Rigidbody>();
-
         eixoX = Input.GetAxis("Horizontal");
         eixoZ = Input.GetAxis("Vertical");
 
@@ -62,6 +60,5 @@ public class ControlaJogador : MonoBehaviour
 
             rigidbody.MoveRotation(novaRotacao);
         }
-
     }
 }
