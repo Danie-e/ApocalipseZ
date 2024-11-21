@@ -1,18 +1,35 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour
 {
     [SerializeField] private float velocidade = 1;
     [SerializeField] private LayerMask mascaraChao;
+    [SerializeField] public GameObject textoGameOver;
     private Animator anim;
     private Rigidbody rigidbody;
     float eixoX;
     float eixoZ;
+    public bool Vivo = true;
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
-
+    private void Update()
+    {
+        if (!Vivo)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                SceneManager.LoadScene("Game");
+            }
+        }
+    }
     private void FixedUpdate()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -29,6 +46,7 @@ public class ControlaJogador : MonoBehaviour
         else
             anim.SetBool("Correr", false);
 
+
         Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
 
@@ -44,5 +62,6 @@ public class ControlaJogador : MonoBehaviour
 
             rigidbody.MoveRotation(novaRotacao);
         }
+
     }
 }

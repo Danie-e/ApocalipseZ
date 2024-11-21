@@ -10,7 +10,6 @@ public class ControlaCamera : MonoBehaviour
         distancia = transform.position - player.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = player.transform.position + distancia;

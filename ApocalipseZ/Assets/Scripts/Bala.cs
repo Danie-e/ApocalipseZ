@@ -11,7 +11,6 @@ public class Bala : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
         rigidbody.MovePosition(rigidbody.position + transform.forward * Velocidade * Time.deltaTime);
     }
 }
