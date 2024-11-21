@@ -5,6 +5,14 @@ public class ControlaInimigo : MonoBehaviour
     [SerializeField] private GameObject jogador;
     [SerializeField] public float velocidade = 5;
 
+    private void Start()
+    {
+        jogador = GameObject.FindWithTag("Player");
+
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+    }
+
     private void FixedUpdate()
     {
         Rigidbody rigidbody = GetComponent<Rigidbody>();
