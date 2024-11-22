@@ -12,7 +12,6 @@ public class ControlaJogador : MonoBehaviour
 
     private float eixoX;
     private float eixoZ;
-    public bool Vivo = true;
     [SerializeField] public int vida = 10;
 
     private void Start()
@@ -24,7 +23,7 @@ public class ControlaJogador : MonoBehaviour
 
     private void Update()
     {
-        if (!Vivo)
+        if (vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
                 SceneManager.LoadScene("Game");
@@ -70,7 +69,6 @@ public class ControlaJogador : MonoBehaviour
         {
             Time.timeScale = 0;
             TextoGameOver.SetActive(true);
-            Vivo = false;
         }
     }
 }
