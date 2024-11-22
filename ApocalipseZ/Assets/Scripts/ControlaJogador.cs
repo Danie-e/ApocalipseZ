@@ -10,9 +10,10 @@ public class ControlaJogador : MonoBehaviour
     private Animator anim;
     private Rigidbody rigidbody;
 
-    public bool Vivo = true;
     private float eixoX;
     private float eixoZ;
+    public bool Vivo = true;
+    [SerializeField] public int vida = 10;
 
     private void Start()
     {
@@ -59,6 +60,17 @@ public class ControlaJogador : MonoBehaviour
             Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
 
             rigidbody.MoveRotation(novaRotacao);
+        }
+    }
+
+    public void ReceberDano()
+    {
+        vida--;
+        if (vida <= 0)
+        {
+            Time.timeScale = 0;
+            TextoGameOver.SetActive(true);
+            Vivo = false;
         }
     }
 }
