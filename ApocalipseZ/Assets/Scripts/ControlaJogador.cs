@@ -6,13 +6,14 @@ public class ControlaJogador : MonoBehaviour
     [SerializeField] private float velocidade = 1;
     [SerializeField] private LayerMask mascaraChao;
     [SerializeField] public GameObject TextoGameOver;
+    [SerializeField] private ControlaInterface controlaInterface;
 
     private Animator anim;
     private Rigidbody rigidbody;
 
     private float eixoX;
     private float eixoZ;
-    [SerializeField] public int vida = 10;
+    [SerializeField] public int Vida = 10;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class ControlaJogador : MonoBehaviour
 
     private void Update()
     {
-        if (vida <= 0)
+        if (Vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
                 SceneManager.LoadScene("Game");
@@ -64,8 +65,9 @@ public class ControlaJogador : MonoBehaviour
 
     public void ReceberDano()
     {
-        vida--;
-        if (vida <= 0)
+        Vida--;
+        controlaInterface.AtualizarSliderVidaJogador();
+        if (Vida <= 0)
         {
             Time.timeScale = 0;
             TextoGameOver.SetActive(true);
