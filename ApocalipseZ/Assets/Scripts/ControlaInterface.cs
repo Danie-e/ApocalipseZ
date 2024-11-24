@@ -10,6 +10,7 @@ public class ControlaInterface : MonoBehaviour
     {
         scriptControlaJogador = GameObject.FindWithTag("Player").GetComponent<ControlaJogador>();
         SliderVidaJogador.maxValue = scriptControlaJogador.Vida;
+        AtualizarSliderVidaJogador();
     }
 
     void Update()
