@@ -63,5 +63,6 @@ Expansão do mapa, adição de itens coletaveis e aumento da vida.
 
 - Desenvolvimento: [Daniela Eloisa](https://github.com/Danie-e)
 - Assets: Alura
+- Assets: [kenney](https://kenney.nl/assets/ui-pack)
 - Áudio: _
 - Pacote de partículas: _
