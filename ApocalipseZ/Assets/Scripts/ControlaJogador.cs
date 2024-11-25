@@ -4,16 +4,19 @@ using UnityEngine.SceneManagement;
 public class ControlaJogador : MonoBehaviour
 {
     [SerializeField] private float velocidade = 1;
+    [SerializeField] public int Vida = 10;
+
     [SerializeField] private LayerMask mascaraChao;
     [SerializeField] public GameObject TextoGameOver;
     [SerializeField] private ControlaInterface controlaInterface;
+    [SerializeField] private AudioClip somDeDano;
 
     private Animator anim;
     private Rigidbody rigidbody;
 
     private float eixoX;
     private float eixoZ;
-    [SerializeField] public int Vida = 10;
+
 
     private void Start()
     {
@@ -67,6 +70,7 @@ public class ControlaJogador : MonoBehaviour
     {
         Vida--;
         controlaInterface.AtualizarSliderVidaJogador();
+        ControlaAudio.Instance.PlayOneShot(somDeDano);
         if (Vida <= 0)
         {
             Time.timeScale = 0;

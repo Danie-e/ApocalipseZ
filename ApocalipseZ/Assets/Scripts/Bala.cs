@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
-    private Rigidbody rigidbody;
     [SerializeField] private float Velocidade = 20;
+    [SerializeField] private AudioClip somDeMorte;
+
+    private Rigidbody rigidbody;
 
     private void Start()
     {
@@ -18,6 +20,9 @@ public class Bala : MonoBehaviour
     {
         Destroy(this.gameObject);
         if (other.tag.Equals("Inimigo"))
+        {
+            ControlaAudio.Instance.PlayOneShot(somDeMorte);
             Destroy(other.gameObject);
+        }
     }
 }
