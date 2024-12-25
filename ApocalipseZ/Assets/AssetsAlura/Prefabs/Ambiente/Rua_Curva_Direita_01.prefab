@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33342389535421950}
   - component: {fileID: 23675382418321388}
   - component: {fileID: 4530790688726684833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rua_Curva_Direita_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

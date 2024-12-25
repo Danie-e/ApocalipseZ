@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33294364256990640}
   - component: {fileID: 23893877749871706}
   - component: {fileID: 4364284838867598293}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rua_Reta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
