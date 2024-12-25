@@ -6,13 +6,12 @@ public class ControlaJogador : MonoBehaviour
     [SerializeField] private float velocidade = 1;
     [SerializeField] public int Vida = 10;
 
-    [SerializeField] private LayerMask mascaraChao;
     [SerializeField] public GameObject TextoGameOver;
     [SerializeField] private ControlaInterface controlaInterface;
     [SerializeField] private AudioClip somDeDano;
 
-    private Animator anim;
-    private Rigidbody rigidbody;
+    private MovimentoJogador meuMovimento;
+    private AnimacaoPersonagem minhaAnimacao;
 
     private float eixoX;
     private float eixoZ;
@@ -21,8 +20,8 @@ public class ControlaJogador : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        rigidbody = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        meuMovimento = GetComponent<MovimentoJogador>();
+        minhaAnimacao = GetComponent<AnimacaoPersonagem>();
     }
 
     private void Update()
@@ -41,29 +40,10 @@ public class ControlaJogador : MonoBehaviour
 
         Vector3 direcao = new Vector3(eixoX, 0, eixoZ);
 
-        rigidbody.MovePosition(rigidbody.position + (direcao * velocidade * Time.deltaTime));
+        meuMovimento.Movimentar(direcao, velocidade);
+        meuMovimento.RotacionarJogador();
 
-        if (direcao != Vector3.zero)
-            anim.SetBool("Correr", true);
-        else
-            anim.SetBool("Correr", false);
-
-
-        Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
-
-        RaycastHit impacto;
-
-        if (Physics.Raycast(raio, out impacto, 100, mascaraChao))
-        {
-            Vector3 posicaoMiraJogador = impacto.point - transform.position;
-
-            posicaoMiraJogador.y = transform.position.y;
-
-            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
-
-            rigidbody.MoveRotation(novaRotacao);
-        }
+        minhaAnimacao.Movimentar(direcao.magnitude);
     }
 
     public void ReceberDano()
@@ -77,4 +57,5 @@ public class ControlaJogador : MonoBehaviour
             TextoGameOver.SetActive(true);
         }
     }
+
 }

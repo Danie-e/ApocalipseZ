@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class ControlaInimigo : MonoBehaviour
 {
-    [SerializeField] private GameObject jogador;
     [SerializeField] private float velocidade = 5;
-    private Rigidbody rigidbody;
-    private Animator animator;
+    private GameObject jogador;
+    private MovimentoPersonagem meuMovimento;
+    private AnimacaoPersonagem minhaAnimacao;
 
     private void Start()
     {
         jogador = GameObject.FindWithTag("Player");
-
-        int geraTipoZumbi = Random.Range(1, 28);
-        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
-        rigidbody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        AleatorizarZumbi();
+        meuMovimento = GetComponent<MovimentoPersonagem>();
+        minhaAnimacao = GetComponent<AnimacaoPersonagem>();
     }
 
     private void FixedUpdate()
@@ -22,19 +20,24 @@ public class ControlaInimigo : MonoBehaviour
         float distancia = Vector3.Distance(transform.position, jogador.transform.position);
         Vector3 direcao = jogador.transform.position - transform.position;
 
-        Quaternion novaRotacao = Quaternion.LookRotation(direcao);
-        rigidbody.MoveRotation(novaRotacao);
+        meuMovimento.Rotacionar(direcao);
 
         if (distancia > 2.5)
         {
-            rigidbody.MovePosition(rigidbody.position + direcao.normalized * velocidade * Time.deltaTime);
-            animator.SetBool("Atacando", false);
+            meuMovimento.Movimentar(direcao, velocidade);
+            minhaAnimacao.Atacar(false);
         }
         else
-            animator.SetBool("Atacando", true);
+            minhaAnimacao.Atacar(true);
+
     }
     public void AtacaJogador()
     {
         jogador.GetComponent<ControlaJogador>().ReceberDano();
+    }
+    private void AleatorizarZumbi()
+    {
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
     }
 }
